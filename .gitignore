@@ -1,4 +1,4 @@
 .vs/
-64x/
-*.user
-*.suo
+/.kilo/
+/obj/
+/bin/
