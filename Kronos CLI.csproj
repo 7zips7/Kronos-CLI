@@ -16,22 +16,20 @@
     <DebugType>embedded</DebugType>
     <OutputPath>obj\build\</OutputPath>
     <PublishDir>bin\</PublishDir>
-
     <ApplicationIcon>asteroid.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DiscordRichPresence" Version="1.6.1.70" />
     <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
   </ItemGroup>
 
   <Target Name="BundleSingleExe"
           AfterTargets="Build"
           Condition="'$(NoBuild)' != 'true' and '$(_IsPublishing)' != 'true' and '$(DesignTimeBuild)' != 'true'">
-
     <MSBuild Projects="$(MSBuildProjectFullPath)"
              Targets="Publish"
              Properties="NoBuild=true" />
-
   </Target>
 
 </Project>
