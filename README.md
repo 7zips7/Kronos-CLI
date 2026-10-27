@@ -1,3 +1,17 @@
+**How To Restore The Original Splash Screen**
+
+Open your Fortnite build folder, then go to:
+FortniteGame\Content\Splash
+Look for a file ending in .flbak or .flbak.1 (or another number). In File Explorer, enable View → File name extensions if you can’t see the full names.
+Copy the backup somewhere safe first. Then move the current splash image out of the folder, so you have a copy of that too.
+Rename the backup by removing the backup suffix. For example, Splash.bmp.flbak becomes Splash.bmp.
+
+If there are several backups, check which contains the original image before restoring it. You can make a copy and remove its .flbak suffix to preview it.
+
+
+
+
+
 <details>
 # Kronos CLI
 
