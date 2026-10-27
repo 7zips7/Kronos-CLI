@@ -89,6 +89,12 @@ internal sealed class Launcher(Options options) : IDisposable
             : StartNormally(role, gameExe, argLine, useProxy ? options.Proxy : null);
         if (process == null) return null;
 
+        if (role == "Client")
+        {
+            string version = BuildVersion.Read(options)?.Text ?? "Unknown version";
+            _ = DiscordPresence.TrackGameAsync(process, version);
+        }
+
         string mode = useProxy ? "EAC + proxy" : redirectDll != null ? "no EAC + redirect DLL" : "no EAC";
         Log.Ok($"[{role}] Started as {login} ({mode}, PID {process.Id})");
         Log.Detail($"[{role}] \"{gameExe}\" " + string.Join(' ',
