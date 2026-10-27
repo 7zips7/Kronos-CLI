@@ -1,3 +1,4 @@
+<details>
 # Kronos CLI
 
 Kronos CLI is an OGFN launcher made by helix.67. It supports Fortnite builds from 1.7.2 through the latest version.
