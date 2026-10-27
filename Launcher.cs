@@ -22,6 +22,7 @@ internal sealed class Launcher(Options options) : IDisposable
     const string ContentSplashUrl = "https://raw.githubusercontent.com/Helix-Dev-Q/random-stuff-for-my-repos/refs/heads/main/kronoy.bmp";
     const string EacSplashUrl = "https://raw.githubusercontent.com/Helix-Dev-Q/random-stuff-for-my-repos/refs/heads/main/Kronos%20(1).png";
 
+    readonly DiscordPresence presence = new();
     readonly List<GameSession> sessions = [];
     readonly Dictionary<string, IntPtr> ProcessesFN = new(StringComparer.OrdinalIgnoreCase);
     readonly Image images = new(options.BuildPath);
@@ -92,7 +93,7 @@ internal sealed class Launcher(Options options) : IDisposable
         if (role == "Client")
         {
             string version = BuildVersion.Read(options)?.Text ?? "Unknown version";
-            _ = DiscordPresence.TrackGameAsync(process, version);
+            _ = presence.TrackGameAsync(process, version);
         }
 
         string mode = useProxy ? "EAC + proxy" : redirectDll != null ? "no EAC + redirect DLL" : "no EAC";
@@ -332,6 +333,7 @@ internal sealed class Launcher(Options options) : IDisposable
     {
         if (disposed) return;
         disposed = true;
+        presence.Dispose();
         images.RestoreAll();
         KillProcessesFN();
         proxy?.Dispose();
