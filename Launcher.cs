@@ -83,9 +83,7 @@ internal sealed class Launcher(Options options) : IDisposable
         ];
         string argLine = string.Join(' ', args.Select(Quote));
         var startedAt = DateTime.Now;
-
-        
-
+ 
         Process? process = redirectDll != null
             ? StartInjected(role, gameExe, argLine, redirectDll)
             : StartNormally(role, gameExe, argLine, useProxy ? options.Proxy : null);
