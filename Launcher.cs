@@ -84,17 +84,7 @@ internal sealed class Launcher(Options options) : IDisposable
         string argLine = string.Join(' ', args.Select(Quote));
         var startedAt = DateTime.Now;
 
-        try
-        {
-            images.SwapDirectory(Path.Combine(options.BuildPath, "FortniteGame", "Content", "Splash"), ContentSplashUrl);
-            images.SwapDirectory(Path.Combine(options.BuildPath, "FortniteGame", "Binaries", "Win64", "EasyAntiCheat"), EacSplashUrl);
-            foreach (var rd in options.ReplaceDirs)
-                images.SwapDirectory(Path.IsPathRooted(rd) ? rd : Path.Combine(options.BuildPath, rd), ContentSplashUrl);
-        }
-        catch (Exception e)
-        {
-            Log.Warn($"Preparing image swaps failed: {e.Message}");
-        }
+        
 
         Process? process = redirectDll != null
             ? StartInjected(role, gameExe, argLine, redirectDll)
